@@ -15,15 +15,12 @@ Else
     Expand-Archive $CascadiaCodeZip $CascadiaCodePath
 }
 
-# yoink https://www.jordanmalcolm.com/deploying-windows-10-fonts-at-scale/
-$FontFolder = "$CascadiaCodePath/ttf"
-$FontItem = Get-Item -Path $FontFolder
-$FontList = Get-ChildItem -Path "$FontItem" -Include ('*.ttf')
-
-foreach ($Font in $FontList) {
-    Write-Host 'Installing font -' $Font.BaseName
-    Copy-Item $Font "C:\Windows\Fonts"
-    New-ItemProperty -Name $Font.BaseName -Path "HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Fonts" -PropertyType string -Value $Font.name
+# yoink https://gist.github.com/anthonyeden/0088b07de8951403a643a8485af2709b
+$Fonts = Get-ChildItem -Path "$CascadiaCodePath/ttf/*" -Include '*.ttf'
+$Destination = (New-Object -ComObject Shell.Application).Namespace(0x14)
+foreach ($Font in $Fonts) {
+    Write-Host 'Installing font ' $Font.BaseName
+    $Destination.CopyHere($Font.FullName, 0x10)
 }
 
 # Install other programs
