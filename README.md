@@ -1,6 +1,8 @@
 # config
 My usual new machine setup steps, configs, and useful software.
 
+To get most of the way there just run `install.ps1`. May need to run `Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser`.
+
 ## Windows
 1. Install
     - git ([downloads](https://git-scm.com/download/win) or `winget install -e --id Git.Git -s winget`)
@@ -24,7 +26,7 @@ My usual new machine setup steps, configs, and useful software.
     - Edit it as needed (eg `code $PROFILE` or `nvim $PROFILE`)
 
 1. Configure Neovim
-    - `mkdir -f $env:LOCALAPPDATA/nvim; cp -r configs/nvim $env:LOCALAPPDATA`
+    - `cp -r configs/nvim $env:LOCALAPPDATA`
 
 ### Other software
 - Visual Studio (`Microsoft.VisualStudio.2022.Community`)
