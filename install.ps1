@@ -26,7 +26,10 @@ foreach ($Font in $Fonts) {
 # Install other programs
 winget install JanDeDobbeleer.OhMyPosh
 winget install neovim
+winget install fzf
+winget install BurntSushi.ripgrep.MSVC
 Install-Module posh-git -scope CurrentUser
+Install-Module PSFzf -scope CurrentUser
 
 # Install config files
 cp -r -force ./configs/nvim $env:LOCALAPPDATA
